@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Feedback Submitted{% endblock %}
+
+{% block content %}
+<h1>Thank you for the feedback!</h1>
+<p>Your feedback has been submitted successfully. </p>
+<a href="{% url 'submit_feedback' %}" class="btn btn-success">New Feedback</a>
+<a href="{% url 'home' %}" class="btn btn-outline-primary">Home</a>
+{% endblock %}

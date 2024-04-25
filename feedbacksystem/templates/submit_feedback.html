@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Give Feedback{% endblock %}
+
+{% block stylesheet %}
+<style>
+    footer {
+        text-align: left;
+        padding: 10px;
+    }
+    .feedback-form label {
+        display: block;
+        margin-top: 10px;
+    }
+    .feedback-form input[type="text"], 
+    .feedback-form textarea {
+        width: 50%;
+        height: 100px;
+        box-sizing: border-box;
+    }
+    .feedback-form textarea {
+        height: 120px;
+    }
+    .feedback-form .form-text {
+        margin-top: 5px;
+    }
+    .feedback-form .alert {
+        margin-top: 5px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h2>Give Feedback</h2>
+<form method="post" class="feedback-form">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="mb-3">
+        <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">Submit</button>
+    <a href="{% url 'home' %}" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to cancel?');">Cancel</a>
+
+</form>
+{% endblock %}

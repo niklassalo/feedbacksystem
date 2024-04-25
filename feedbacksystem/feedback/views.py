@@ -4,7 +4,7 @@ from .forms import FeedbackForm
 # Create your views here.
 
 def home(request):
-    return render(request, 'feedback/home.html')
+    return render(request, 'home.html')
 
 def submit_feedback(request):
     if request.method == 'POST':
@@ -16,7 +16,7 @@ def submit_feedback(request):
             return redirect('feedback_success')
     else:
         form = FeedbackForm()
-    return render(request, 'feedback/submit_feedback.html', {'form': form})
+    return render(request, 'submit_feedback.html', {'form': form})
 
 def feedback_success(request):
-    return render(request, 'feedback/feedback_success.html')
+    return render(request, 'feedback_success.html')
